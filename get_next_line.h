@@ -6,7 +6,7 @@
 /*   By: estina <estina@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 08:27:43 by estina            #+#    #+#             */
-/*   Updated: 2019/11/11 13:17:09 by estina           ###   ########.fr       */
+/*   Updated: 2019/11/11 19:05:04 by estina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,6 @@
 
 int		get_next_line(int fd, char **line);
 char	*ft_strcpy(char *dest, char *src);
+size_t	ft_strlen(const char *s);
 
 #endif

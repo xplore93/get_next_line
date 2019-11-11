@@ -6,9 +6,11 @@
 /*   By: estina <estina@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 08:27:34 by estina            #+#    #+#             */
-/*   Updated: 2019/11/11 13:20:21 by estina           ###   ########.fr       */
+/*   Updated: 2019/11/11 19:07:11 by estina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "get_next_line.h"
 
 char	*ft_strcpy(char *dest, char *src)
 {
@@ -22,4 +24,14 @@ char	*ft_strcpy(char *dest, char *src)
 	}
 	dest[i] = 0;
 	return (dest);
+}
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }

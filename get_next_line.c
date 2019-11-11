@@ -6,7 +6,7 @@
 /*   By: estina <estina@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 08:27:22 by estina            #+#    #+#             */
-/*   Updated: 2019/11/11 13:22:10 by estina           ###   ########.fr       */
+/*   Updated: 2019/11/11 19:07:59 by estina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	ft_search_nl(char *buffer, char **line)
 	j = 0;
 	while (j < i)
 	{
-		aux[j] = buffer++;
+		aux[j] = *buffer++;
 		j++;
 	}
 	if (*buffer == '\n')
@@ -41,6 +41,7 @@ int			get_next_line(int fd, char **line)
 	char		buffer[BUFFER_SIZE + 1];
 	static char	*mem;
 	int			lecture;
+	int			buf_rest;
 
 	mem = NULL;
 	if (!mem)
@@ -51,7 +52,10 @@ int			get_next_line(int fd, char **line)
 			return (-1);
 		buffer[lecture] = 0;
 		ft_search_nl(buffer, line);
+		buf_rest = ft_strlen(buffer);
+		mem = malloc(buf_rest + 1);
 		mem = ft_strcpy(mem, buffer);
 		return (1);
 	}
+	return (0);
 }

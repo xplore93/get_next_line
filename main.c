@@ -6,7 +6,7 @@
 /*   By: estina <estina@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 10:44:07 by estina            #+#    #+#             */
-/*   Updated: 2019/11/11 11:26:12 by estina           ###   ########.fr       */
+/*   Updated: 2019/11/11 13:07:04 by estina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		main(int argc, char **argv)
 	int		fd;
 	int		result;
 
-	line = NULL;
+	line = malloc(1);
 	if (argc > 1)
 		fd = open(argv[1], O_RDONLY);
 	else

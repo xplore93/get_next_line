@@ -6,49 +6,40 @@
 /*   By: estina <estina@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 08:27:34 by estina            #+#    #+#             */
-/*   Updated: 2019/11/12 21:11:26 by estina           ###   ########.fr       */
+/*   Updated: 2019/11/13 04:55:50 by estina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
-int		ft_find_n(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
-	int		i;
-
-	i = 0;
-	while (s[i] >= 0)
+	while (*s >= 0)
 	{
-		if (s[i] == c)
-			return (i);
-		if (!s[i] && s[i] == c)
-			return (i);
-		if (!s[i])
+		if (*s == c)
+			return ((char*)s);
+		if (!*s && *s == c)
+			return ((char*)s);
+		if (!*s)
 			break ;
-		i++;
+		s++;
 	}
-	return (-1);
+	return (0);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+char	*ft_strcpy(char *dst, char *src)
 {
-	char *aux;
-	char *s;
+	size_t	i;
 
-	if (!dst)
-		return (dstsize);
-	aux = dst + dstsize;
-	s = (char*)src;
-	while (*s && dst < aux)
-		*dst++ = *s++;
-	if (dst < aux)
-		*dst = 0;
-	else if (dstsize > 0)
-		dst[-1] = 0;
-	while (*s)
-		s++;
-	return (s - src);
+	i = 0;
+	dst = malloc(ft_strlen(src) + 1);
+	while (src[i])
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = 0;
+	return (dst);
 }
 
 size_t	ft_strlen(const char *s)
@@ -67,8 +58,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	int		i;
 	int		j;
 
-	if (!s1)
-		return (NULL);
 	i = ft_strlen(s1);
 	j = ft_strlen(s2);
 	if (!(str = malloc(i + j + 1)))
@@ -87,4 +76,22 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	str[i + j] = 0;
 	return (str);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	char	*s2;
+	int		count;
+
+	count = 0;
+	while (s1[count])
+		count++;
+	if (!(s2 = malloc(count + 1)))
+		return (NULL);
+	while (count >= 0)
+	{
+		s2[count] = s1[count];
+		count--;
+	}
+	return (s2);
 }

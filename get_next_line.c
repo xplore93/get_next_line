@@ -6,11 +6,12 @@
 /*   By: estina <estina@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 08:27:22 by estina            #+#    #+#             */
-/*   Updated: 2019/11/14 17:27:41 by estina           ###   ########.fr       */
+/*   Updated: 2019/11/14 22:22:03 by estina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
 static void	ft_freemem(char **memory)
 {
@@ -45,6 +46,16 @@ static int	ft_append(char **memory, char **line, int lecture)
 	return (1);
 }
 
+static int	ft_newstr(char **line, int lecture)
+{
+	char		*aux;
+
+	aux = malloc(1);
+	aux[0] = 0;
+	*line = aux;
+	return (lecture);
+}
+
 int			get_next_line(int fd, char **line)
 {
 	char		buffer[BUFFER_SIZE + 1];
@@ -69,6 +80,6 @@ int			get_next_line(int fd, char **line)
 			break ;
 	}
 	if (lecture < 0 || (lecture == 0 && !memory))
-		return (lecture);
+		return (ft_newstr(line, lecture));
 	return (ft_append(&memory, line, lecture));
 }

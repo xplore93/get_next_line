@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: estina <estina@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 08:27:22 by estina            #+#    #+#             */
-/*   Updated: 2019/11/14 17:27:41 by estina           ###   ########.fr       */
+/*   Updated: 2019/11/14 15:58:38 by estina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static void	ft_freemem(char **memory)
 {
-	free(*memory);
-	*memory = NULL;
+	if (memory != NULL && *memory != NULL)
+	{
+		free(*memory);
+		*memory = NULL;
+	}
 }
 
-static int	ft_append(char **memory, char **line, int lecture)
+static int	ft_append(char **memory, char **line)
 {
 	int		len;
 	char	*temp;
@@ -40,15 +43,13 @@ static int	ft_append(char **memory, char **line, int lecture)
 		*line = ft_strdup(*memory);
 		ft_freemem(memory);
 	}
-	if (lecture == 0)
-		return (0);
 	return (1);
 }
 
 int			get_next_line(int fd, char **line)
 {
 	char		buffer[BUFFER_SIZE + 1];
-	static char	*memory;
+	static char	*memory[10255];
 	int			lecture;
 	char		*temp;
 
@@ -57,18 +58,18 @@ int			get_next_line(int fd, char **line)
 	while ((lecture = read(fd, buffer, BUFFER_SIZE)) > 0)
 	{
 		buffer[lecture] = 0;
-		if (!memory)
-			memory = ft_strdup(buffer);
+		if (!memory[fd])
+			memory[fd] = ft_strdup(buffer);
 		else
 		{
-			temp = ft_strjoin(memory, buffer);
-			free(memory);
-			memory = temp;
+			temp = ft_strjoin(memory[fd], buffer);
+			free(memory[fd]);
+			memory[fd] = temp;
 		}
-		if (ft_strchr(memory, '\n'))
+		if (ft_strchr(memory[fd], '\n'))
 			break ;
 	}
-	if (lecture < 0 || (lecture == 0 && !memory))
+	if (lecture < 0 || (lecture == 0 && !memory[fd]))
 		return (lecture);
-	return (ft_append(&memory, line, lecture));
+	return (ft_append(&memory[fd], line));
 }

@@ -6,7 +6,7 @@
 /*   By: estina <estina@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 08:27:34 by estina            #+#    #+#             */
-/*   Updated: 2019/11/14 15:45:31 by estina           ###   ########.fr       */
+/*   Updated: 2019/11/17 18:54:31 by estina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,33 +79,4 @@ char	*ft_strdup(const char *s1)
 		count--;
 	}
 	return (s2);
-}
-
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char	*dst;
-	size_t	i;
-
-	if (!s)
-		return (NULL);
-	i = 0;
-	if (ft_strlen(s) < start)
-	{
-		if (!(dst = malloc(len + 10)))
-			return (NULL);
-		while (i++ < len)
-			dst[i - 1] = 0;
-	}
-	else
-	{
-		if (!(dst = malloc(len + 1)))
-			return (NULL);
-	}
-	while (i < len)
-	{
-		dst[i] = s[start + i];
-		i++;
-	}
-	dst[i] = 0;
-	return (dst);
 }

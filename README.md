@@ -27,7 +27,7 @@ int	get_next_line(int fd, char **line)
 ```
 
 Description | Param. #1 | Param. #2 | Return Value
-:-----------: | :-----------: | :-----------: | :-----------: | :-----------:
+:-----------: | :-----------: | :-----------: | :-----------:
 Write a function which returns a line read from a file descriptor, without the newline | file descriptor for reading | The value of what has been read | 1 : A line has been read; 0 : EOF has been reached -1 : An error happened
 
 [1]: https://www.42madrid.com/
